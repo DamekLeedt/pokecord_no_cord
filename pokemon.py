@@ -36,19 +36,21 @@ class SimPokemon:
     Stat = (((2*Base + IV) * Level) / 100 + 5) * NATURE
     """
     
-    def __init__(self, dex_num = 151, name = "Mew", level=100, ivs=[0,0,0,0,0,0], base_stats=[100,100,100,100,100,100], nature = None, nickname = None):
+    def __init__(self, dex_num = 151, name = "Mew", level=100, ivs=[0,0,0,0,0,0], base_stats=[100,100,100,100,100,100], nature = None, shiny = False, gender = "male", nickname = None):
         self.level = level
         self.name = name
+        self.shiny = shiny
+        self.gender = gender
         self.nickname = nickname
-        self._dex_num = dex_num
+        self.dex_num = dex_num
         self._ivs = ivs
         self._base_stats:list[int] = base_stats
-        self._nature = nature if nature else random.choice(list(NATURES.keys()))
+        self.nature = nature if nature else random.choice(list(NATURES.keys()))
         self.stats = self.calculate_stats()
 
     def calculate_stats(self):
         stats = self._base_stats.copy()
-        nature = NATURES[self._nature]
+        nature = NATURES[self.nature]
         stats[0] = int(((2 * self._base_stats[0] + self._ivs[0] + 100) * self.level) / 100 + 10)
         for i in range(1, 6):
             stats[i] = int((((2 * self._base_stats[i] + self._ivs[i]) * self.level) / 100 + 5))
@@ -66,11 +68,5 @@ class SimPokemon:
         self.nickname = nickname
     
     def __str__(self):
-        return (f"{self.name if not self.nickname else self.nickname + " (" + self.name + ")"} LV: {self.level}, HP: {self.stats[0]}, "
-                f"ATK: {self.stats[1]}, DEF: {self.stats[2]}, SPATK: {self.stats[3]}, SPDEF: {self.stats[4]}, SPEED: {self.stats[5]}, NATURE: {self._nature.capitalize()} ")
-
-def main():
-    pokemon = SimPokemon(nickname="Bob")
-    print(pokemon)
-
-main()
+        return (f"SimPokemon(dex_num={self.dex_num}, name={self.name}, nickname={self.nickname}, shiny={self.shiny}, " +
+                f"stats={self.stats}, ivs={self._ivs}, nature={self.nature})")
