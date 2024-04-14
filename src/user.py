@@ -1,4 +1,4 @@
-import simpokemon, pypokedex, random
+import os, simpokemon, pypokedex, random
 
 class User:
     def __init__(self):
@@ -9,7 +9,13 @@ class User:
         pass
 
     def save(self):
-        pass
+        if not self.party:
+            print("No party.")
+            return "No party."
+        if not os.path.exists("./saves"):
+            print("saves does not exist")
+            os.makedirs("./saves")
+        
 
     def add_pokemon(self, dex_num = 151, shiny = False, gender = "male"):
         pokemon = pypokedex.get(dex = dex_num)

@@ -23,6 +23,10 @@ def loop():
             if choice.lower() == "party":
                 player.show_party()
                 continue
+            if choice.lower() == "save":
+                player.save()
+                continue
+
             if choice == pokemon.name.lower():
                 break
             else:
