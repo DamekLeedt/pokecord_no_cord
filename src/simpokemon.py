@@ -42,7 +42,7 @@ class SimPokemon:
         self.shiny = shiny
         self.gender = gender
         self.nickname = nickname
-        self.dex_num = dex_num
+        self.dex_num = int(dex_num)
         self._ivs = ivs
         self._base_stats:list[int] = base_stats
         self.nature = nature if nature else random.choice(list(NATURES.keys()))
@@ -67,6 +67,9 @@ class SimPokemon:
             raise TypeError("Input is not a string.")
         self.nickname = nickname
     
-    def __str__(self):
+    def __repr__(self):
         return (f"SimPokemon(dex_num={self.dex_num}, name={self.name}, nickname={self.nickname}, shiny={self.shiny}, " +
-                f"stats={self.stats}, ivs={self._ivs}, nature={self.nature})")
+                f"gender={self.gender}, level={self.level}, stats={self.stats}, ivs={self._ivs}, nature={self.nature})")
+
+    def __str__(self):
+        return str(f"{self.dex_num}|{self.name}|{self.nickname}|{self.shiny}|{self.level}|{",".join([str(i) for i in self._base_stats])}|{",".join([str(i) for i in self._ivs])}|{self.nature}|{self.gender}")

@@ -26,6 +26,9 @@ def loop():
             if choice.lower() == "save":
                 player.save()
                 continue
+            if choice.lower() == "load":
+                player.load()
+                continue
 
             if choice == pokemon.name.lower():
                 break
