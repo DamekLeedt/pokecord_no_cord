@@ -6,10 +6,11 @@ class User:
         self.money = 0
 
     def load(self):
-        if not os.path.exists("./saves/save.txt"):
+        if not os.path.exists("../saves/save.txt"):
             print("No save file available.")
+            print(os.path)
             return
-        save = open("saves/save.txt", "r").read().split("\n")
+        save = open("../saves/save.txt", "r").read().split("\n")
         print("Money available: " + save[0])
         for pokemon in save[1:]:
             if not pokemon:
@@ -25,10 +26,10 @@ class User:
         if not self.party:
             print("No party.")
             return "No party."
-        if not os.path.exists("./saves"):
+        if not os.path.exists("../saves"):
             print("saves does not exist")
-            os.makedirs("./saves")
-        save = open("saves/save.txt", "w")
+            os.makedirs("../saves")
+        save = open("../saves/save.txt", "w")
         save.write(str(self.money) + "\n")
         for pokemon in self.party:
             save.write(str(pokemon) + "\n")

@@ -6,6 +6,7 @@ def main():
 def loop():
     player = user.User()
     game_continue = True
+    print("Welcome to Pokecord without the Cord! To see a list of commands, enter 'help'.")
     while game_continue:
         pokemon = get_pokemon(random.randint(1, 151))
         num = random.randint(1, 4096)
@@ -28,6 +29,9 @@ def loop():
                 continue
             if choice.lower() == "load":
                 player.load()
+                continue
+            if choice.lower() == "help":
+                print("save, load, party, quit, help")
                 continue
 
             if choice == pokemon.name.lower():

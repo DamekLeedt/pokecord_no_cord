@@ -72,4 +72,8 @@ class SimPokemon:
                 f"gender={self.gender}, level={self.level}, stats={self.stats}, ivs={self._ivs}, nature={self.nature})")
 
     def __str__(self):
-        return str(f"{self.dex_num}|{self.name}|{self.nickname}|{self.shiny}|{self.level}|{",".join([str(i) for i in self._base_stats])}|{",".join([str(i) for i in self._ivs])}|{self.nature}|{self.gender}")
+        string = f"{self.dex_num}|{self.name}|{self.nickname}|{self.shiny}|{self.level}|"
+        string += f"{','.join([str(i) for i in self._base_stats])}|"
+        string += f"{','.join([str(i) for i in self._ivs])}|{self.nature}|{self.gender}"
+        return string
+        #return str(f"{self.dex_num}|{self.name}|{self.nickname}|{self.shiny}|{self.level}|{",".join([str(i) for i in self._base_stats])}|{",".join([str(i) for i in self._ivs])}|{self.nature}|{self.gender}")
